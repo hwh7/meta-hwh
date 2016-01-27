@@ -1,0 +1,31 @@
+From 38dac8a27a36a0801308db8b5e8814f961d2ca8c Mon Sep 17 00:00:00 2001
+From: Hyungwon Hwang <hyungwon.hwang7@gmail.com>
+Date: Sat, 2 Jan 2016 11:15:53 +0900
+Subject: [PATCH] Fix build error in cross compiling
+
+Error msg:
+configure: error: in `/home/hwh/git/yocto/poky/build_weston/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/kodi/15.1-r0/git':
+configure: error: cannot run test program while cross compiling
+See `config.log' for more details
+
+Signed-off-by: Hyungwon Hwang <hyungwon.hwang7@gmail.com>
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index d2cd5b2..ae4c203 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1164,7 +1164,7 @@ int main() {
+   if (TIXML_MAJOR_VERSION < 2) exit(1);
+   if (TIXML_MAJOR_VERSION == 2 && ( TIXML_MINOR_VERSION < 6 || ( TIXML_MINOR_VERSION == 6 && TIXML_PATCH_VERSION < 2 ))) exit(1);
+ }
+-    ]])],[AC_CHECK_LIB([tinyxml], [main],, AC_MSG_ERROR("tinyxml >= 2.6.2 not found"))], [AC_MSG_ERROR([tinyxml >= 2.6.2 not found])]
++    ]])],[AC_CHECK_LIB([tinyxml], [main],, AC_MSG_ERROR("tinyxml >= 2.6.2 not found"))], [AC_MSG_ERROR([tinyxml >= 2.6.2 not found])], []
+   )])
+ AC_LANG_POP([C++])
+ 
+-- 
+2.5.0
+

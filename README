@@ -1,0 +1,10 @@
+Yocto layer for core-image-hwh
+
+supported devices
+- Raspberry PI 2
+
+supported packages
+- Kodi
+- Transmission
+
+Build tested on Fedora 23

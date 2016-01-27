@@ -1,0 +1,40 @@
+From 8a2af430cc2b75092a02d5e7c17403addf847020 Mon Sep 17 00:00:00 2001
+From: Hyungwon Hwang <hyungwon.hwang7@gmail.com>
+Date: Sun, 18 Oct 2015 12:01:56 +0900
+Subject: [PATCH] Disable tinyxml
+
+Signed-off-by: Hyungwon Hwang <hyungwon.hwang7@gmail.com>
+---
+ configure.ac | 16 ----------------
+ 1 file changed, 16 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index d2cd5b2..c1d1226 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1152,22 +1152,6 @@ if test "$use_mysql" = "yes"; then
+ fi
+ AC_CHECK_LIB([bluetooth],   [hci_devid],, AC_MSG_RESULT([Could not find suitable version of libbluetooth]))
+ 
+-AC_LANG_PUSH([C++])
+-PKG_CHECK_MODULES([TINYXML], [tinyxml >= 2.6.2],
+-  [INCLUDES="$INCLUDES $TINYXML_CFLAGS"; LIBS="$LIBS $TINYXML_LIBS"],
+-  [AC_RUN_IFELSE(
+-   [AC_LANG_SOURCE([[
+-#include <stdlib.h>
+-#include <tinyxml.h>
+-
+-int main() {
+-  if (TIXML_MAJOR_VERSION < 2) exit(1);
+-  if (TIXML_MAJOR_VERSION == 2 && ( TIXML_MINOR_VERSION < 6 || ( TIXML_MINOR_VERSION == 6 && TIXML_PATCH_VERSION < 2 ))) exit(1);
+-}
+-    ]])],[AC_CHECK_LIB([tinyxml], [main],, AC_MSG_ERROR("tinyxml >= 2.6.2 not found"))], [AC_MSG_ERROR([tinyxml >= 2.6.2 not found])]
+-  )])
+-AC_LANG_POP([C++])
+-
+ PKG_CHECK_MODULES([YAJL], [yajl >= 2],
+   [INCLUDES="$INCLUDES $YAJL_CFLAGS"; LIBS="$LIBS $YAJL_LIBS"; YAJL_FOUND="true"],
+   [AC_COMPILE_IFELSE(
+-- 
+1.9.1
+

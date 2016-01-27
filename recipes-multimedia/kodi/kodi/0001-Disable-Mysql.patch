@@ -1,0 +1,37 @@
+From 2c87b290fc34ced1bd488292fb451967d485b746 Mon Sep 17 00:00:00 2001
+From: Hyungwon Hwang <hyungwon.hwang7@gmail.com>
+Date: Sun, 18 Oct 2015 10:45:29 +0900
+Subject: [PATCH] Disable Mysql
+
+Signed-off-by: Hyungwon Hwang <hyungwon.hwang7@gmail.com>
+---
+ configure.ac | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index d2cd5b2..822f4ea 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1078,19 +1078,6 @@ else
+   fi
+ fi
+ 
+-# platform common libraries
+-if test "$use_mysql" = "yes"; then
+-  AC_PATH_PROG(MYSQL_CONFIG, mysql_config,"no")
+-  if test "x$MYSQL_CONFIG" != "xno"; then
+-    AC_DEFINE([HAVE_MYSQL],[1],["Define to 1 if you have the `mysql' library (-lmysqlclient)."])
+-    INCLUDES="$INCLUDES `$MYSQL_CONFIG --include`"
+-    MYSQL_LIBS=`$MYSQL_CONFIG --libs`
+-    LIBS="$LIBS $MYSQL_LIBS"
+-    AC_SUBST(MYSQL_LIBS)
+-  else
+-    AC_MSG_ERROR($missing_program)
+-  fi
+-fi
+ AC_CHECK_HEADER([ass/ass.h],, AC_MSG_ERROR($missing_library))
+ AC_CHECK_HEADER([mpeg2dec/mpeg2.h],, AC_MSG_ERROR($missing_library))
+ AC_CHECK_HEADER([mpeg2dec/mpeg2convert.h],, AC_MSG_ERROR($missing_library),
+-- 
+1.9.1
+
